@@ -658,7 +658,7 @@ export function initSidebar() {
             <div class="brand-icon"><i class="fas fa-piggy-bank"></i></div>
             <div class="brand-text">
                 <h2>Gene's Lechon</h2>
-                <span>Admin Panel</span>
+                <span>Clerk Panel</span>
             </div>
         </div>
         <p class="menu-label">MENU</p>
@@ -751,4 +751,5 @@ window.handleLogoutClick = async () => {
     try { await signOut(auth); } catch(e) {}
     localStorage.clear();
     window.location.href = 'index.html';
+
 };
