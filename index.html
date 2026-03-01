@@ -4,6 +4,9 @@
 
 
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +38,7 @@
             </ul>
 
             <div class="hero-overlay">
-                <p class="staff-tag">Store Manager</p>
+                <p class="staff-tag">Store Clerk</p>
                 <div class="hero-content">
                     <h3>Clerk Portal</h3>
                     <p>Authentic Quality Since 2003</p>
@@ -44,6 +47,12 @@
         </div>
 
         <div class="form-section">
+            <!-- Floating circles mirroring left side -->
+            <ul class="circles-right">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+
             <div class="login-box-card">
                 
                 <div class="brand-header">
@@ -72,7 +81,7 @@
                             <input type="checkbox" checked="checked">
                             <span class="checkmark"></span>
                         </label>
-                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                        <a href="#" class="forgot-pass" id="forgotPassBtn">Forgot Password?</a>
                     </div>
 
                     <button type="submit" class="btn-login" id="loginBtn">
@@ -83,7 +92,9 @@
                 </form>
 
                 <div class="social-login-section">
-
+                    <div class="separator">
+                   
+                    </div>
                     <div class="social-buttons">
                         <!-- <button type="button" id="googleLoginBtn" class="btn-social btn-google">
                             <i class="fab fa-google"></i> Google
@@ -100,6 +111,34 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotModal" class="forgot-modal-overlay">
+        <div class="forgot-modal">
+            <button class="forgot-modal-close" id="closeForgotModal"><i class="fas fa-times"></i></button>
+            <div class="forgot-modal-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <h2>Forgot Password?</h2>
+            <p>You cannot reset your password on your own. Please contact the system administrator for assistance.</p>
+            <div class="admin-contact-card">
+                <div class="admin-avatar">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="admin-info">
+                    <span class="admin-label">System Administrator</span>
+                    <a href="mailto:admin@geneslechon.com" class="admin-email">
+                        <i class="far fa-envelope"></i> louige@gmail.com
+                    </a>
+                    <a href="tel:+639XXXXXXXXX" class="admin-phone">
+                        <i class="fas fa-phone"></i> +63 9655220714
+                    </a>
+                </div>
+            </div>
+            <p class="forgot-note">contact the admin right away.</p>
+            <button class="btn-got-it" id="closeModalBtn">Got it</button>
         </div>
     </div>
 
@@ -144,12 +183,27 @@
         });
         
         observer.observe(errorMsg, { attributes: true, childList: true, subtree: true });
+
+        // 4. Forgot Password Modal
+        const forgotPassBtn = document.querySelector('#forgotPassBtn');
+        const forgotModal = document.querySelector('#forgotModal');
+        const closeForgotModal = document.querySelector('#closeForgotModal');
+        const closeModalBtn = document.querySelector('#closeModalBtn');
+
+        forgotPassBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            forgotModal.classList.add('active');
+        });
+
+        closeForgotModal.addEventListener('click', () => forgotModal.classList.remove('active'));
+        closeModalBtn.addEventListener('click', () => forgotModal.classList.remove('active'));
+        forgotModal.addEventListener('click', function(e) {
+            if (e.target === forgotModal) forgotModal.classList.remove('active');
+        });
     </script>
 
     <script type="module" src="js/auth.js"></script>
   
 
 </body>
-
 </html>
-
