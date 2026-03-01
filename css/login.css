@@ -2,7 +2,6 @@
 
 
 
-
 /* --- LOGO STYLING --- */
 .brand-logo {
     width: 80px; 
@@ -134,8 +133,125 @@ body.login-body {
 .hero-content p { font-size: 1rem; opacity: 0.9; font-weight: 300; }
 
 /* --- RIGHT SIDE (FORM) --- */
-.form-section { flex: 1.2; background: #fff; padding: 40px; display: flex; justify-content: center; align-items: center; }
-.login-box-card { width: 100%; max-width: 380px; text-align: center; }
+.form-section { flex: 1.2; background: #fff; padding: 40px; display: flex; justify-content: center; align-items: center; position: relative; overflow: hidden; }
+
+/* Right-side floating circles (mirrors left side) */
+.circles-right { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; margin: 0; padding: 0; z-index: 0; }
+.circles-right li {
+    position: absolute; display: block; list-style: none; width: 20px; height: 20px;
+    background: rgba(255, 78, 0, 0.15);
+    animation: animate 25s linear infinite; bottom: -150px;
+}
+.circles-right li:nth-child(1)  { left: 15%; width: 80px;  height: 80px;  animation-delay: 0s;   animation-duration: 20s; }
+.circles-right li:nth-child(2)  { left: 75%; width: 20px;  height: 20px;  animation-delay: 2s;   animation-duration: 12s; }
+.circles-right li:nth-child(3)  { left: 50%; width: 25px;  height: 25px;  animation-delay: 4s;   animation-duration: 16s; }
+.circles-right li:nth-child(4)  { left: 30%; width: 60px;  height: 60px;  animation-delay: 1s;   animation-duration: 18s; }
+.circles-right li:nth-child(5)  { left: 60%; width: 15px;  height: 15px;  animation-delay: 6s;   animation-duration: 14s; }
+.circles-right li:nth-child(6)  { left: 85%; width: 45px;  height: 45px;  animation-delay: 3s;   animation-duration: 22s; }
+.circles-right li:nth-child(7)  { left: 5%;  width: 30px;  height: 30px;  animation-delay: 7s;   animation-duration: 17s; }
+.circles-right li:nth-child(8)  { left: 40%; width: 55px;  height: 55px;  animation-delay: 0.5s; animation-duration: 25s; }
+.circles-right li:nth-child(9)  { left: 20%; width: 18px;  height: 18px;  animation-delay: 9s;   animation-duration: 13s; }
+.circles-right li:nth-child(10) { left: 90%; width: 35px;  height: 35px;  animation-delay: 5s;   animation-duration: 19s; }
+
+/* --- FORGOT PASSWORD MODAL --- */
+.forgot-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    padding: 20px;
+}
+.forgot-modal-overlay.active { opacity: 1; visibility: visible; }
+
+.forgot-modal {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 35px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+    transform: translateY(20px) scale(0.97);
+    transition: all 0.3s ease;
+}
+.forgot-modal-overlay.active .forgot-modal {
+    transform: translateY(0) scale(1);
+}
+
+.forgot-modal-close {
+    position: absolute; top: 15px; right: 15px;
+    background: #f5f5f5; border: none; border-radius: 50%;
+    width: 32px; height: 32px; cursor: pointer;
+    color: #999; font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+}
+.forgot-modal-close:hover { background: #ffe0d4; color: var(--primary-orange); }
+
+.forgot-modal-icon {
+    width: 70px; height: 70px;
+    background: linear-gradient(135deg, var(--primary-orange), var(--primary-yellow));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 25px rgba(255, 78, 0, 0.3);
+}
+.forgot-modal-icon i { font-size: 1.8rem; color: white; }
+
+.forgot-modal h2 {
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--accent-navy); margin-bottom: 10px;
+}
+.forgot-modal > p {
+    color: var(--text-grey); font-size: 0.9rem; line-height: 1.6; margin-bottom: 25px;
+}
+
+.admin-contact-card {
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex; align-items: center; gap: 15px;
+    text-align: left;
+    margin-bottom: 15px;
+}
+.admin-avatar {
+    width: 48px; height: 48px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--accent-navy), #2a3f6e);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.admin-avatar i { color: white; font-size: 1.2rem; }
+
+.admin-info { display: flex; flex-direction: column; gap: 5px; }
+.admin-label { font-weight: 700; font-size: 0.85rem; color: var(--accent-navy); }
+.admin-email, .admin-phone {
+    font-size: 0.8rem; color: var(--primary-orange);
+    text-decoration: none; display: flex; align-items: center; gap: 6px;
+    font-weight: 500; transition: color 0.2s;
+}
+.admin-email:hover, .admin-phone:hover { color: var(--primary-orange); text-decoration: underline; }
+
+.forgot-note {
+    font-size: 0.78rem; color: #aaa;
+    margin-bottom: 20px !important;
+    font-style: italic;
+}
+
+.btn-got-it {
+    width: 100%; padding: 13px;
+    background: linear-gradient(135deg, var(--primary-orange), #ff7b00);
+    color: white; border: none; border-radius: 10px;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    transition: all 0.3s; box-shadow: 0 8px 20px rgba(255, 78, 0, 0.25);
+}
+.btn-got-it:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(255, 78, 0, 0.35); }
+
+.login-box-card { width: 100%; max-width: 380px; text-align: center; position: relative; z-index: 1; }
 
 .brand-header { margin-bottom: 25px; }
 .brand-header h1 {
@@ -222,6 +338,7 @@ body.login-body {
 
 .login-footer { margin-top: 30px; border-top: 1px solid #f0f0f0; padding-top: 20px; font-size: 0.8rem; color: #999; }
 .login-footer p { font-weight: 600; color: var(--accent-navy); margin-bottom: 2px; }
+
 
 /* RESPONSIVE */
 @media (max-width: 850px) {
