@@ -635,7 +635,7 @@ export function initSidebar() {
 
     const menuItems = [
 
-        { name: "Inventory",    link: "inventory.html",    icon: "fa-boxes"         },
+        { name: "Stocks",    link: "inventory.html",    icon: "fa-boxes"         },
         { name: "Products",     link: "products.html",     icon: "fa-tag"           },
 
     ];
@@ -753,3 +753,4 @@ window.handleLogoutClick = async () => {
     window.location.href = 'index.html';
 
 };
+
